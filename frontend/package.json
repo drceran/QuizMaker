@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Frontend for the QuizMaker application",
   "scripts": {
-    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
