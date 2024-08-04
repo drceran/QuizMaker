@@ -1,0 +1,35 @@
+version: '3'
+services:
+  frontend:
+    build: ./frontend
+    command: /bin/bash run.sh
+    ports:
+      - '3000:3000'
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    ports:
+      - '4000:4000'
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: admin
+      DB_PASSWORD: 1234
+      DB_NAME: quiz_db
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: quiz_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+volumes:
+  postgres-data:
